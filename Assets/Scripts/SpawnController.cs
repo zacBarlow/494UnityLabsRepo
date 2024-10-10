@@ -8,12 +8,9 @@ public class SpawnController : MonoBehaviour
     [SerializeField] private GameObject[] spawners;
     private int pickupCount = 0;
     private PickupSpawner curr;
-    private int counter;
     // Start is called before the first frame update
     void Start()
     {
-        counter = 0;
-
     }
 
     // Update is called once per frame

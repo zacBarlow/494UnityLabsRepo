@@ -1,4 +1,6 @@
+
 using UnityEngine;
+
 public class TPMovement : MonoBehaviour
 {
     private CharacterController controller;
@@ -19,7 +21,8 @@ public class TPMovement : MonoBehaviour
     float turnSmoothSpeed;
 
     private void Update()
-    {
+    { 
+
         playerGrounded = controller.isGrounded;
         if (playerGrounded && playerVelocity.y < 0)
         {
@@ -46,4 +49,5 @@ public class TPMovement : MonoBehaviour
         playerVelocity.y += gravityVal * Time.deltaTime;
         controller.Move(playerVelocity*Time.deltaTime);
     }
+   
 }
