@@ -9,7 +9,7 @@ public class TPMovement : MonoBehaviour
     private float speed = 12.0f;
     private float jumpScale = 2.0f;
     private float gravityVal = -9.81f;
-    [SerializeField]private Transform cam;
+    [SerializeField] private Transform cam;
 
 
 

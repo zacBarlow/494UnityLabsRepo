@@ -6,6 +6,10 @@ TagManager:
   tags:
   - bomb
   - symbol_+
+  - NPC
+  - NPCInteractive
+  - BookPickup
+  - Pickup
   layers:
   - Default
   - TransparentFX

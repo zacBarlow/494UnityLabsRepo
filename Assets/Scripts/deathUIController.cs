@@ -14,7 +14,7 @@ public class deathUIController : MonoBehaviour
     void Update()
     {
 
-        if(DeathPanel.activeSelf == true)
+        if(DeathPanel.activeSelf)
         {
             currentPlayer.SetActive(false);
             foreach (GameObject g in UIElementsToOverride)

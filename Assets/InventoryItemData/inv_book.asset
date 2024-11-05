@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 827317cbaef6c9742a98668deb5e05fd, type: 3}
+  m_Name: inv_book
+  m_EditorClassIdentifier: 
+  id: inv_book
+  dName: Book of Darth Plageuis the Wise
+  picture: {fileID: 21300000, guid: 32ef9358528a30b4182c0a07db1cd5a1, type: 3}
+  prefab: {fileID: 7648940150355397557, guid: 35b5fd72b581ca14aa2c2b6da28868a9, type: 3}

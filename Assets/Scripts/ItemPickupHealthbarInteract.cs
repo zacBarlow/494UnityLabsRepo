@@ -3,54 +3,78 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEditor;
 using UnityEngine;
-
-public class ItemPickupHealthbarInteract : MonoBehaviour
+namespace Player
 {
-    private int barsInd = 3;
-    public GameObject[] bars;
-    public GameObject fullHealthPrompt;
-    public GameObject lowHealthPrompt;
-    public GameObject deathMessage;
-
-    private void Start()
+    public class ItemPickupHealthbarInteract : MonoBehaviour
     {
-        barsInd = 3;
+        private int barsInd = 3;
+        public GameObject[] bars;
+        public GameObject fullHealthPrompt;
+        public GameObject lowHealthPrompt;
+        public GameObject deathMessage;
 
-    }
-    private void OnTriggerStay(Collider other)
-    {
-      GameObject otherO = other.gameObject;
-        if (otherO.CompareTag("bomb"))
+        private void Start()
         {
-            if(barsInd == 0)
-            {
-                deathMessage.SetActive(true);
-            }
-            else if(barsInd == 1)
-            {
-                bars[barsInd--].SetActive(false);
-                lowHealthPrompt.SetActive(true);
-                StartCoroutine(promptTimer(lowHealthPrompt));
-            }
-            else if(barsInd == 3)
-            {
-                fullHealthPrompt.SetActive(false);
-                bars[barsInd--].SetActive(false);
-            }
-            else
-            {
-                bars[barsInd--].SetActive(false);
-            }
-            Destroy(otherO);
+            barsInd = 3;
+
         }
-        if(otherO.CompareTag("symbol_+"))
+        private void OnTriggerStay(Collider other)
+        {
+            GameObject otherO = other.gameObject;
+            if (otherO.CompareTag("bomb"))
+            {
+                if (barsInd == 0)
+                {
+                    deathMessage.SetActive(true);
+                }
+                else if (barsInd == 1)
+                {
+                    bars[barsInd--].SetActive(false);
+                    lowHealthPrompt.SetActive(true);
+                    StartCoroutine(promptTimer(lowHealthPrompt));
+                }
+                else if (barsInd == 3)
+                {
+                    fullHealthPrompt.SetActive(false);
+                    bars[barsInd--].SetActive(false);
+                }
+                else
+                {
+                    bars[barsInd--].SetActive(false);
+                }
+                Destroy(otherO);
+            }
+            if (otherO.CompareTag("symbol_+"))
+            {
+                if (barsInd == 3)
+                {
+                    fullHealthPrompt.SetActive(true);
+                    StartCoroutine(promptTimer(fullHealthPrompt));
+                }
+                else if (barsInd == 0)
+                {
+                    lowHealthPrompt.SetActive(false);
+                    bars[++barsInd].SetActive(true);
+                }
+                else
+                {
+                    bars[++barsInd].SetActive(true);
+
+                }
+                Destroy(otherO);
+
+            }
+
+        }
+        public bool InventoryHeal()
         {
             if (barsInd == 3)
             {
                 fullHealthPrompt.SetActive(true);
                 StartCoroutine(promptTimer(fullHealthPrompt));
+                return false;
             }
-            else if(barsInd == 0)
+            else if (barsInd == 0)
             {
                 lowHealthPrompt.SetActive(false);
                 bars[++barsInd].SetActive(true);
@@ -58,18 +82,15 @@ public class ItemPickupHealthbarInteract : MonoBehaviour
             else
             {
                 bars[++barsInd].SetActive(true);
-                    
             }
-            Destroy(otherO);
-                     
+            return true;
         }
-        
-    }
-    IEnumerator promptTimer(GameObject prompt)
-    {
-        yield return new WaitForSeconds(4);
-        prompt.SetActive(false);
-        StopCoroutine(promptTimer(prompt));
-    }
+        IEnumerator promptTimer(GameObject prompt)
+        {
+            yield return new WaitForSeconds(4);
+            prompt.SetActive(false);
+            StopCoroutine(promptTimer(prompt));
+        }
 
+    }
 }
